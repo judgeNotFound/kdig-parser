@@ -1,0 +1,10 @@
+kdig-parser
+
+A Rust-based tool to parse log files generated via `kdig <opts> +stats`. Works for folders of files, subfolders, and regex matching against filenames. For running this tool on the current folder, run:
+
+kdig-parser --input .
+
+It picks up on all .txt files and tries to parse them displaying statistics afterward. For local building, you can use the Rust toolchain. From the root of the repository, run the following commands:
+
+cargo build --release
+./target/release/kdig-parser --help
