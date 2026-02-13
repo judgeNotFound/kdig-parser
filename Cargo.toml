@@ -1,0 +1,15 @@
+[package]
+name = "kdig-parser"
+description = "A CLI tool to analyze kdig output files and extract query statistics"
+version = "0.1.0"
+edition = "2024"
+authors = ["Robert Richter <robert.richter@rrcomtech.com>"]
+
+[dependencies]
+anyhow = "1.0.101"
+walkdir = "2.4"
+regex = "1.10"
+
+[dependencies.clap]
+version = "4.5.55"
+features = ["derive"]
