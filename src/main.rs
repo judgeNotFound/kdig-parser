@@ -1,4 +1,4 @@
-use anyhow::{anyhow, Result};
+use anyhow::{Result, anyhow};
 use clap::Parser;
 use regex::Regex;
 use std::path::PathBuf;
@@ -46,6 +46,7 @@ fn main() -> Result<()> {
 
     // Compile regex pattern if provided
     let pattern_regex = if let Some(ref pattern) = cli.pattern {
+        println!("{}", pattern);
         Some(Regex::new(pattern)?)
     } else {
         None
@@ -73,11 +74,10 @@ fn main() -> Result<()> {
         .filter(|e| {
             // If pattern is provided, match against filename
             if let Some(ref regex) = pattern_regex {
-                if let Some(filename) = e.path().file_name().and_then(|n| n.to_str()) {
-                    regex.is_match(filename)
-                } else {
-                    false
+                if let Some(filepath) = e.path().to_str() {
+                    return regex.is_match(filepath);
                 }
+                false
             } else {
                 true
             }
